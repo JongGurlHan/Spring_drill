@@ -31,14 +31,14 @@
 			<beans:value>/WEB-INF/properties/db.properties</beans:value>
 		</beans:property>
 	</beans:bean>
-	
+	<!-- BasicDataSourceBean 정의(데이터베이스 접속정보를 관리) -->
 	<beans:bean class='org.apache.commons.dbcp2.BasicDataSource' id='basic_data_source'>
 		<beans:property name='driverClassName' value='${db.classname}'/>
 		<beans:property name="url" value="${db.url}"/>
 		<beans:property name="username" value='${db.username}'/>
 		<beans:property name="password" value='${db.password}'/>
 	</beans:bean>
-	
+	<!-- SqlSessionFactoryBean 정의 (데이터베이스 접속정보와 mapper파일을 관리) -->
 	<beans:bean class='org.mybatis.spring.SqlSessionFactoryBean' id='sqlSession'>
 		<beans:property name="dataSource" ref='basic_data_source'/>
 		<beans:property name="mapperLocations" value='/WEB-INF/mapper/*.xml'/>

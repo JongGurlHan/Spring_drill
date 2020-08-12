@@ -23,7 +23,7 @@ public class TestController {
 	}
 	
 	@PostMapping("/input_pro")
-	public String input_pro(DataBean dataBean) {
+	public String input_pro(DataBean dataBean) { 
 		
 		SqlSessionTemplate.insert("test_db.insert_data", dataBean);
 		
