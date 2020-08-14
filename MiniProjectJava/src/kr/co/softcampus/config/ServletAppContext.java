@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -108,6 +110,22 @@ public class ServletAppContext implements WebMvcConfigurer{
 		InterceptorRegistration reg1 = registry.addInterceptor(topMenuInterceptor);
 		//모든 요청에 대해서 인터셉터를 통과할 수 있도록 설정
 		reg1.addPathPatterns("/**");
+	}
+	//두개의 프로퍼터기 따로 관리된다.
+	//자바코드 방식에선 properties파일을 propertySource로 등록하고, 파일이 다르다 하더라도, 메세지로 등록하면 
+	//두개가 충돌해서 하나도 인식못하는 일이 발생한다. 
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer PropertySourcesPlaceholderConfigurer() {
+		return new PropertySourcesPlaceholderConfigurer();
+	}
+	
+	//error_message.properties을 메세지로 등록할거다
+	@Bean
+	public ReloadableResourceBundleMessageSource messageSource() {
+		ReloadableResourceBundleMessageSource res =  new ReloadableResourceBundleMessageSource();
+		res.setBasenames("/WEB-INF/properties/error_message");
+		return res;
+		
 	}
 	
 
