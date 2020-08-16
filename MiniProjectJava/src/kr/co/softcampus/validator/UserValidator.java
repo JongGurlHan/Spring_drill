@@ -6,7 +6,7 @@ import org.springframework.validation.Validator;
 import kr.co.softcampus.beans.UserBean;
 
 public class UserValidator implements Validator{
-
+//	테스트용 주석2
 	@Override
 	public boolean supports(Class<?> clazz) {
 		return UserBean.class.isAssignableFrom(clazz);
