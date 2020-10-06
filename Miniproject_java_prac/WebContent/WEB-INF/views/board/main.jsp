@@ -22,7 +22,7 @@
 <div class="container" style="margin-top:100px">
 	<div class="card shadow">
 		<div class="card-body">
-			<h4 class="card-title">${boardInfoName}</h4>
+			<h4 class="card-title">${boardInfoName }</h4>
 			<table class="table table-hover" id='board_list'>
 				<thead>
 					<tr>
@@ -33,18 +33,15 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var = 'obj' items="${ contentList}">
-					<tr>						
+					<c:forEach var='obj' items="${contentList }">
+					<tr>
 						<td class="text-center d-none d-md-table-cell">${obj.content_idx }</td>
-						<td><a href='${root }board/read'>${obj.content_subject }</a></td>
+						<td><a href='${root }board/read?board_info_idx=${board_info_idx}&content_idx=${obj.content_idx}'>${obj.content_subject }</a></td>
 						<td class="text-center d-none d-md-table-cell">${obj.content_writer_name }</td>
 						<td class="text-center d-none d-md-table-cell">${obj.content_date }</td>
 						
 					</tr>
-					
 					</c:forEach>
-				
-					
 				</tbody>
 			</table>
 			
